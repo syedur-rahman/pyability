@@ -24,7 +24,7 @@ def user_credentials_prompt():
 
     return user, user_pw, enable_pw
 
-class SSHFramework:
+class SSHTimerMethod:
 
     def __init__(self):
         self.user, self.user_pw, self.enable_pw = user_credentials_prompt()
@@ -62,21 +62,21 @@ class SSHFramework:
         # keep session active with parameters while class is initialized
         self.ssh_session.keep_this = ssh_setup
 
-    def enable_mode_tm(self):
-        """ enable mode timer method
+    def enable_mode(self):
+        """ enable mode timer method (tm)
         user the timer method to get into enable mode """
 
-        self.send_command_tm('enable', DELAY=1)
-        self.send_command_tm(self.enable_pw, DELAY=1)
+        self.send_command('enable', DELAY=1)
+        self.send_command(self.enable_pw, DELAY=1)
 
-    def no_paging_tm(self):
+    def no_paging(self):
         """ no paging timer method
         user the timer method to remove any paging """
 
-        self.send_command_tm('terminal len 0', DELAY=1)
+        self.send_command('terminal len 0', DELAY=1)
 
-    def send_command_tm(self, command, DELAY=5):
-        """ send command timer method
+    def send_command(self, command, DELAY=5):
+        """ send command timer method (tm)
         this sends our commands to the switches, but through the timer
         method, the default delay set as 5 seconds! """
 
@@ -100,21 +100,65 @@ class SSHFramework:
 
         return data
 
-    def enable_mode_etm(self):
-        """ enable mode expect trailing method
+    def close_ssh_session(self):
+        """ close ssh session
+        closes the current session so that there are no hanging ssh threads """
+
+        self.ssh_session.close()
+
+class SSHTrailingMethod:
+
+    def __init__(self):
+        self.user, self.user_pw, self.enable_pw = user_credentials_prompt()
+
+    def login(self, switch):
+        """ login
+        logs into specified switch """
+
+        # set up ssh client
+        ssh_setup = paramiko.SSHClient()
+
+        # add missing host key policy (set as auto)
+        ssh_setup.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+
+        # connect to switch
+        ssh_setup.connect(
+            switch, 
+            username=self.user, 
+            password=self.user_pw, 
+            look_for_keys=False, 
+            allow_agent=False,
+            )
+        # set up transport channel for session
+        transport = ssh_setup.get_transport()
+
+        # invoke session
+        self.ssh_session = transport.open_session()
+
+        # set up for interactive mode, multiple commands - pty
+        self.ssh_session.get_pty()
+
+        # invoke session's shell
+        self.ssh_session.invoke_shell()
+
+        # keep session active with parameters while class is initialized
+        self.ssh_session.keep_this = ssh_setup
+
+    def enable_mode(self):
+        """ enable mode expect trailing method (etm)
         user the expect trailing method to get into enable mode """
 
-        self.send_command_etm('enable')
-        self.send_command_etm(self.enable_pw)
+        self.send_command('enable')
+        self.send_command(self.enable_pw)
 
-    def no_paging_etm(self):
-        """ no paging expect trailing method
+    def no_paging(self):
+        """ no paging expect trailing method (etm)
         user the expect trailing method to remove any paging """
 
-        self.send_command_etm('terminal len 0')
+        self.send_command('terminal len 0')
 
-    def send_command_etm(self, command):
-        """ send command expect trailing method
+    def send_command(self, command):
+        """ send command expect trailing method (etm)
         this sends our command to the switches, but through the expect
         trailing method! """
 
@@ -154,3 +198,4 @@ class SSHFramework:
         closes the current session so that there are no hanging ssh threads """
 
         self.ssh_session.close()
+

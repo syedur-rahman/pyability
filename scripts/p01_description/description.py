@@ -1,41 +1,38 @@
-from sshfw import SSHFramework
+from sshfw import *
 import time
 
+def execution_test(conn):
+    """ simple test function to see execution time """
+
+    # start timer
+    start = time.time()
+
+    # general method flow
+    conn.login('10.0.0.1')
+    conn.enable_mode()
+    conn.no_paging()
+    show_ip_int_brief_out = conn.send_command('show ip int brief')
+    print("COLLECTING ALL CONNECTED PORTS FROM SHOW IP INT BRIEF:")
+    for line in show_ip_int_brief_out.splitlines():
+        if 'up' in line.lower():
+            if 'down' not in line.lower():
+                print(line)
+    conn.close_ssh_session()
+
+    # end timer
+    end = time.time()
+
+    print("\nExecution Time: " + str(end-start))
+
 def main():
-    print("Running show ip int brief, time elapse test")
-    conn = SSHFramework()
-    conn.login('10.0.0.1')
+    print("TEST - ELAPSED TIME")
+    print("\nSSH TIMER METHOD!")
+    conn = SSHTimerMethod()
+    execution_test(conn)
 
-    # start timer
-    start = time.time()
-
-    # timer method
-    conn.enable_mode_tm()
-    conn.no_paging_tm()
-    show_ip_int_brief_out = conn.send_command_tm('show ip int brief')
-    conn.close_ssh_session()
-
-    # end timer
-    end = time.time()
-
-    print("Execution Time For TM: " + str(end-start))
-
-    conn.login('10.0.0.1')
-
-    # start timer
-    start = time.time()
-
-    # expect trailing method
-    conn.enable_mode_etm()
-    conn.no_paging_etm()
-    show_ip_int_brief_out = conn.send_command_etm('show ip int brief')
-    conn.close_ssh_session()
-
-    # end timer
-    end = time.time()
-
-    print("Execution Time For ETM: " + str(end-start))
-
+    print("\nSSH TRAILING METHOD!")
+    conn = SSHTrailingMethod()
+    execution_test(conn)
 
 if __name__ == "__main__":
     main()
