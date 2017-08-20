@@ -48,6 +48,8 @@ enable secret cisco
 
 R3
 !
+int range fastEthernet 1/0 - 15
+  desc host
 interface Fa1/2
   description R1 point to point connection
   no switchport
