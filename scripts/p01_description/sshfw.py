@@ -63,7 +63,7 @@ class SSHTimerMethod:
         self.ssh_session.keep_this = ssh_setup
 
     def enable_mode(self):
-        """ enable mode timer method (tm)
+        """ enable mode timer method
         user the timer method to get into enable mode """
 
         self.send_command('enable', DELAY=1)
@@ -76,7 +76,7 @@ class SSHTimerMethod:
         self.send_command('terminal len 0', DELAY=1)
 
     def send_command(self, command, DELAY=5):
-        """ send command timer method (tm)
+        """ send command timer method
         this sends our commands to the switches, but through the timer
         method, the default delay set as 5 seconds! """
 
@@ -145,20 +145,20 @@ class SSHTrailingMethod:
         self.ssh_session.keep_this = ssh_setup
 
     def enable_mode(self):
-        """ enable mode expect trailing method (etm)
+        """ enable mode expect trailing method
         user the expect trailing method to get into enable mode """
 
         self.send_command('enable')
         self.send_command(self.enable_pw)
 
     def no_paging(self):
-        """ no paging expect trailing method (etm)
+        """ no paging expect trailing method
         user the expect trailing method to remove any paging """
 
         self.send_command('terminal len 0')
 
     def send_command(self, command):
-        """ send command expect trailing method (etm)
+        """ send command expect trailing method
         this sends our command to the switches, but through the expect
         trailing method! """
 
