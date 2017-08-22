@@ -1,5 +1,9 @@
-practical followup 1 - description modifier
-
+"""""""""""""""""""""""""""""""""""""""""""""""""
+PRACTICAL FOLLOWUP 001 TOPOLOGY CONFIGURATIONS
+RELATED SCRIPT: DESCRIPTION MODIFIER
+RELATED ARTICLE: The Cautionary Tale Of Paramiko
+"""""""""""""""""""""""""""""""""""""""""""""""""
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 R1
 !
 interface Fa0/0
@@ -26,8 +30,7 @@ crypto key generate rsa modulus 2048
 username admin password cisco
 enable secret cisco
 !
-
-
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 R2
 !
 interface Fa1/1
@@ -45,11 +48,11 @@ crypto key generate rsa modulus 2048
 username admin password cisco
 enable secret cisco
 !
-
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 R3
 !
 int range fastEthernet 1/0 - 15
-  desc host
+  description host
 interface Fa1/2
   description R1 point to point connection
   no switchport
@@ -65,3 +68,4 @@ crypto key generate rsa modulus 2048
 username admin password cisco
 enable secret cisco
 !
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
