@@ -66,16 +66,16 @@ class SSHTimerMethod:
         """ enable mode timer method
         user the timer method to get into enable mode """
 
-        self.send_command('enable', DELAY=1)
-        self.send_command(self.enable_pw, DELAY=1)
+        self.send_command('enable')
+        self.send_command(self.enable_pw)
 
     def no_paging(self):
         """ no paging timer method
         user the timer method to remove any paging """
 
-        self.send_command('terminal len 0', DELAY=1)
+        self.send_command('terminal len 0')
 
-    def send_command(self, command, DELAY=5):
+    def send_command(self, command):
         """ send command timer method
         this sends our commands to the switches, but through the timer
         method, the default delay set as 5 seconds! """
@@ -84,7 +84,7 @@ class SSHTimerMethod:
         self.ssh_session.send(command + '\n')
 
         # delay by specified delay
-        time.sleep(DELAY)
+        time.sleep(5)
 
         # initialize the data received from switch
         data = self.ssh_session.recv(1).decode('utf-8')
