@@ -127,8 +127,8 @@ def interface_mod_script(routers):
     """ main method to run the logic for the interface modification script """
 
     # pick and choose which conceptual idea to run by uncommenting
-    conn = SSHTimerMethod()
-    #conn = SSHTrailingMethod()
+    #conn = SSHTimerMethod()
+    conn = SSHTrailingMethod()
 
     # start timer to measure elapsed time
     start_timer = time.time()
