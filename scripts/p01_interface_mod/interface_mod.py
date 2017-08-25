@@ -123,8 +123,8 @@ def configure_interfaces(conn, router, description_dictionary):
     # end out of configuration terminal after updates have been made
     conn.send_command('end')
 
-def description_script(routers):
-    """ simple test function to see execution time """
+def interface_mod_script(routers):
+    """ main method to run the logic for the interface modification script """
 
     # pick and choose which conceptual idea to run by uncommenting
     conn = SSHTimerMethod()
@@ -168,7 +168,7 @@ def main():
     routers = ['10.0.0.1', '10.2.0.1', '10.3.0.1']
 
     # run the main logic of our script
-    description_script(routers)
+    interface_mod_script(routers)
 
 if __name__ == "__main__":
     main()
