@@ -127,8 +127,8 @@ def description_script(routers):
     """ simple test function to see execution time """
 
     # pick and choose which conceptual idea to run by uncommenting
-    #conn = SSHTimerMethod()
-    conn = SSHTrailingMethod()
+    conn = SSHTimerMethod()
+    #conn = SSHTrailingMethod()
 
     # start timer to measure elapsed time
     start_timer = time.time()
