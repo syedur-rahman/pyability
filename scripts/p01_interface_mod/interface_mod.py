@@ -1,5 +1,5 @@
 """
-description modifier script
+interface modification script
 related article: The Cautionary Tale Of Paramiko
 author: syedur rahman (risedfo)
 """
