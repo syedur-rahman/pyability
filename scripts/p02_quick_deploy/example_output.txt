@@ -1,0 +1,30 @@
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+10.0.0.1
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+10.0.0.1# show version | in uptime
+R1 uptime is 3 hours, 8 minutes
+
+10.0.0.1# show ip int brief | in 0/1
+FastEthernet0/1            unassigned      YES NVRAM  up                    up      
+Serial0/1                  unassigned      YES NVRAM  up                    down    
+
+10.0.0.1# show ip int brief | in 0/1
+FastEthernet0/1            unassigned      YES NVRAM  up                    up      
+Serial0/1                  unassigned      YES NVRAM  up                    down    
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+10.0.0.4
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+10.0.0.4# show version | in uptime
+R4 uptime is 1 hour, 48 minutes
+
+10.0.0.4# show ip int brief | in 0/1
+FastEthernet0/1            unassigned      YES NVRAM  up                    up      
+Serial0/1                  unassigned      YES NVRAM  up                    down    
+
+10.0.0.4# show ip int brief | in 0/1
+FastEthernet0/1            unassigned      YES NVRAM  up                    up      
+Serial0/1                  unassigned      YES NVRAM  up                    down    
+
