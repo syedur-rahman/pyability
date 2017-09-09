@@ -7,4 +7,4 @@ Just edit those files and run the python script to get started.
 Also, make sure to test on non-production devices first before anything else.
 
 ### SCRIPT DEMO
-![](https://i.imgur.com/gVQ6N5T.gifv)
+![](https://i.imgur.com/gVQ6N5T.gif)
