@@ -1,0 +1,16 @@
+show version | in uptime
+conf t
+
+interface fa0/1
+  no shut
+end
+
+show ip int brief | in 0/1
+
+conf t
+
+interface se0/1
+  no shut
+end
+
+show ip int brief | in 0/1
