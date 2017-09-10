@@ -244,13 +244,20 @@ class QuickDeploy:
 
 def main():
     """ main function to run script """
+
+    # colorama initialization, required for windows
     init(autoreset=True)
+
+    # initialize script
     quick_deploy_introduction()
     qd_script = QuickDeploy()
+
+    # only run script if user is comfortable with suggested updates
     if qd_script.display_warning_to_user():
         qd_script.run_commands()
+        qd_script.write_log()
 
-    qd_script.write_log()
+    # pauses the script at the end to state message
     input("\nComplete!")
 
 if __name__ == '__main__':
